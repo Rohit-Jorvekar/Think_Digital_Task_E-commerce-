@@ -1,97 +1,144 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🛍️ FakeStore — React Native Shopping App
 
-# Getting Started
+A clean, modern React Native e-commerce app built with [FakeStore API](https://fakestoreapi.com). Browse products, search in real time, and view detailed product pages with smooth animations.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 📱 Screenshots
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+![WhatsApp Image 2026-02-23 at 12 25 29 PM](https://github.com/user-attachments/assets/4c6b8d4f-a55c-4c5b-bf4c-e22cd8c7f2e9)
+![WhatsApp Image 2026-02-23 at 12 25 28 PM](https://github.com/user-attachments/assets/dc480ed0-e8a2-4786-952b-a6d74d1771c3)
+![WhatsApp Image 2026-02-23 at 12 25 48 PM (1)](https://github.com/user-attachments/assets/f035517a-b0d7-459e-a65f-37eb13a81bd1)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
 
-```sh
-# Using npm
-npm start
 
-# OR using Yarn
-yarn start
+---
+
+## ✨ Features
+
+- **Product Listing** — Fetches live product data from the FakeStore API
+- **Real-time Search** — Filter products as you type via Redux
+- **Pull-to-Refresh** — Swipe down to reload the product list
+- **Product Detail Screen** — Animated hero image, star ratings (full/half/empty), price, tags, and description
+- **Entry Animations** — Fade, slide, and scale transitions using React Native's `Animated` API
+- **Redux State Management** — Centralized state with actions for fetching and searching products
+- **Stack Navigation** — React Navigation with a styled custom header and back button
+
+---
+
+## 🗂️ Project Structure
+
+```
+ProductApp/
+├── android/              # Android native code (auto-generated)
+├── ios/                  # iOS native code (auto-generated)
+├── src/
+│   ├── components/       # Reusable UI components
+│   │   └── ProductItem.js  # Component for each product in the list
+│   ├── screens/          # Screen components
+│   │   ├── ProductListScreen.js  # Main list screen
+│   │   └── ProductDetailScreen.js  # Detail screen
+│   ├── redux/            # Redux-related files
+│   │   ├── actions/      # Action creators
+│   │   │   └── productActions.js
+│   │   ├── reducers/     # Reducers
+│   │   │   ├── productReducer.js
+│   │   │   └── index.js  # Root reducer
+│   │   └── store.js      # Redux store configuration
+│   ├── navigation/       # Navigation setup
+│   │   └── AppNavigator.js
+│   ├── services/         # API services
+│   │   └── api.js        # Axios instance and API calls
+│   └── App.js            # Main entry point (move from root)
+├── index.js              # Entry file (points to src/App.js)
+├── package.json
+└── ...other files
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 🚀 Getting Started
 
-### Android
+### Prerequisites
 
-```sh
-# Using npm
-npm run android
+- [Node.js](https://nodejs.org/) (v18+)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup) or Expo
+- Android Studio / Xcode for device emulation
 
-# OR using Yarn
-yarn android
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/fakestore-rn.git
+cd fakestore-rn
+
+# 2. Install dependencies
+npm install
+
+# 3. Install iOS pods (macOS only)
+cd ios && pod install && cd ..
+
+# 4. Start the app
+npx react-native run-android
+# or
+npx react-native run-ios
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 📦 Dependencies
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+| Package | Purpose |
+|---|---|
+| `react-native` | Core framework |
+| `@react-navigation/native` | Navigation container |
+| `@react-navigation/stack` | Stack navigator |
+| `react-redux` | State management |
+| `redux` | Store |
+| `axios` | HTTP client |
 
-```sh
-bundle install
+Install all at once:
+
+```bash
+npm install @react-navigation/native @react-navigation/stack react-redux redux axios react-native-screens react-native-safe-area-context
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
+## 🔌 API
+
+This app uses the free [FakeStore API](https://fakestoreapi.com).
+
+| Endpoint | Description |
+|---|---|
+| `GET /products` | Fetch all products |
+| `GET /products/:id` | Fetch single product |
+
+No API key required.
+
+
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## 🎨 Design Highlights
 
-# OR using Yarn
-yarn ios
-```
+- **Color palette** — Purple accent (`#6C63FF` / `#5B4FE9`), light grey background
+- **Hero section** — Soft circular gradient behind product image
+- **Star ratings** — Pixel-accurate half-star support via CSS clipping
+- **Pills / Tags** — Category, shipping, and stock status indicators
+- **Smooth animations** — `Animated.parallel` for fade + spring slide + scale on mount
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🛠️ Customization
 
-## Step 3: Modify your app
+- Swap the base URL in `src/api/api.js` to point to your own backend
+- Add cart functionality by extending the Redux store
+- Enable the commented-out back arrow in `ProductDetailScreen.js` if you prefer an in-screen button over the header back button
 
-Now that you have successfully run the app, let's make changes!
+---
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 📄 License
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT © [Rohit Jorvekar](https://github.com/Rohit-Jorvekar)
