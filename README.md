@@ -69,8 +69,8 @@ ProductApp/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/fakestore-rn.git
-cd fakestore-rn
+ https://github.com/Rohit-Jorvekar/Think_Digital_Task_E-commerce-.git
+
 
 # 2. Install dependencies
 npm install
